@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 import authRoutes from './routes/auth.js';
 import itemRoutes from './routes/item.js';
 import morgan from 'morgan';
-import { verifyToken } from './middleware/auth.js';
+import requestRoutes from './routes/request.js';
 dotenv.config();
 
 const app = express();
@@ -34,7 +34,8 @@ connection.once('open', () => {
 
 //authentication Part
 app.use('/auth', authRoutes);
-app.use('/item', verifyToken, itemRoutes);
+app.use('/item', itemRoutes);
+app.use('/request', requestRoutes);
 
 const port = process.env.PORT || 3001;
 app.listen(port, (req, res) => {

@@ -15,7 +15,7 @@ export async function createItem(req, res) {
 export async function getAllItems(req, res) {
     try {
         const items = await Item.find();
-        res.status(200).json(items);
+        res.status(200).json({items});
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Server Error" });

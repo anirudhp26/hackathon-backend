@@ -12,12 +12,12 @@ export async function register(req, res) {
             email,
             password: hashedPassword,
             branch,
-            post,
+            post: "Professor",
             isAdmin: false,
         });
         await newEmployee.save();
         const token = jwt.sign({ email: newEmployee.email, id: newEmployee._id }, 'test');
-        res.status(201).json(newEmployee, token);
+        res.status(200).json({newEmployee, token});
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Server Error" });
